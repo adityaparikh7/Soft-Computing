@@ -40,6 +40,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def identity(x):
+    return x
+
 def threshold(x, threshold_value=0):
     return 1 if x >= threshold_value else 0
 
@@ -65,6 +68,7 @@ def main():
     print("1. Threshold")
     print("2. Sigmoid")
     print("3. ReLU")
+    print("4.Identity")
 
     choice = int(input("Enter the number corresponding to the activation function: "))
 
@@ -78,6 +82,9 @@ def main():
     elif choice == 3:
         func = relu
         func_name = "ReLU"
+    elif choice == 4:
+        func = identity
+        func_name = "Identity"
     else:
         print("Invalid choice.")
         return
