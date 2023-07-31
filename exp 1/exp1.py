@@ -1,42 +1,3 @@
-# import numpy as np
-
-# def threshold(x, threshold_value=0):
-#     return 1 if x >= threshold_value else 0
-
-# def sigmoid(x):
-#     return 1 / (1 + np.exp(-x))
-
-# def relu(x):
-#     return max(0, x)
-
-# def main():
-#     print("Choose an activation function:")
-#     print("1. Threshold")
-#     print("2. Sigmoid")
-#     print("3. ReLU")
-
-#     choice = int(input("Enter the number corresponding to the activation function: "))
-
-#     if choice == 1:
-#         threshold_value = float(input("Enter the threshold value: "))
-#         x = float(input("Enter the input value: "))
-#         result = threshold(x, threshold_value)
-#     elif choice == 2:
-#         x = float(input("Enter the input value: "))
-#         result = sigmoid(x)
-#     elif choice == 3:
-#         x = float(input("Enter the input value: "))
-#         result = relu(x)
-#     else:
-#         print("Invalid choice.")
-#         return
-
-#     print("Result:", result)
-
-# if __name__ == "__main__":
-#     main()
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -51,6 +12,13 @@ def sigmoid(x):
 
 def relu(x):
     return max(0, x)
+
+def tanh(x):
+    return np.tanh(x)
+
+def softmax(x):
+    e_x = np.exp(x - np.max(x))
+    return e_x / e_x.sum()
 
 def plot_activation_function(func, func_name):
     x = np.linspace(-5, 5, 100)
@@ -68,7 +36,9 @@ def main():
     print("1. Threshold")
     print("2. Sigmoid")
     print("3. ReLU")
-    print("4.Identity")
+    print("4. Identity")
+    print("5. Tanh")
+    print("6. Softmax")
 
     choice = int(input("Enter the number corresponding to the activation function: "))
 
@@ -85,6 +55,12 @@ def main():
     elif choice == 4:
         func = identity
         func_name = "Identity"
+    elif choice == 5:
+        func = tanh
+        func_name = "Tanh"
+    elif choice == 6:
+        func = softmax
+        func_name = "Softmax"
     else:
         print("Invalid choice.")
         return
