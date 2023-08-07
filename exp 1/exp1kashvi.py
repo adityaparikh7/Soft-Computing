@@ -114,11 +114,15 @@ if __name__ == "__main__":
     plt.plot(x, bipolar_sigmoid(x))
     plt.title('Bipolar Sigmoid Function')
 
+    plt.figure(figsize=(8, 6))
+    plt.plot(x, relu(x))
+    plt.title('ReLU Function')
+
     plt.tight_layout()
     plt.show()
 
     # ReLU is a special case and doesn't require separate subplot
-    plt.figure(figsize=(8, 6))
-    plt.plot(x, relu(x))
-    plt.title('ReLU Function')
-    plt.show()
+    # plt.figure(figsize=(8, 6))
+    # plt.plot(x, relu(x))
+    # plt.title('ReLU Function')
+    # plt.show()

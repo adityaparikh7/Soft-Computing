@@ -23,6 +23,9 @@ def softmax(x):
 def bipolar_sigmoid(x):
     return (2 / (1 + np.exp(-x))) - 1
 
+def binary_step(x):
+    return np.where(x < 0, 0, 1)
+
 def plot_activation_function(func, func_name):
     x = np.linspace(-5, 5, 100)
     y = [func(i) for i in x]
@@ -43,6 +46,7 @@ def main():
     print("5. Tanh")
     print("6. Softmax")
     print("7. Bipolar Sigmoid")
+    print("8. Binary Step")
 
     choice = int(input("Enter the number corresponding to the activation function: "))
 
@@ -68,6 +72,9 @@ def main():
     elif choice == 7:
         func = bipolar_sigmoid
         func_name = "Bipolar Sigmoid"
+    elif choice == 8:
+        func = binary_step
+        func_name = "Binary Step"
     else:
         print("Invalid choice.")
         return
