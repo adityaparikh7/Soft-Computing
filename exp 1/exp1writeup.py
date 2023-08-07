@@ -43,6 +43,7 @@ def main():
     print("2. Binary Step")
     print("3. Sigmoid")
     print("4. Bipolar Sigmoid")
+    print("5. Ramp")
 
     choice = int(input("Enter the number corresponding to the activation function: "))
 
@@ -58,6 +59,9 @@ def main():
     elif choice == 4:
         func = bipolar_sigmoid
         func_name = "Bipolar Sigmoid"
+    elif choice == 5:
+        func = ramp
+        func_name = "Ramp"
     else:
         print("Invalid choice.")
         return
