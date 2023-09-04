@@ -1,5 +1,13 @@
 import numpy as np
 
+def signum(x):
+    if x>0:
+        return 1
+    elif x==0:
+        return 0
+    else:
+        return -1
+    
 # Get the number of neurons from the user
 num_neurons = int(input("Enter the number of neurons: "))
 
@@ -23,7 +31,7 @@ for pattern in input_patterns:
     for i in range(num_neurons):
         for j in range(num_neurons):
             if i != j:
-                weights[i][j] += learning_rate * pattern[i] * pattern[j]
+                weights[i][j] += learning_rate * signum(pattern[i]) * signum(pattern[j])
 
 # Print the learned weight matrix
 print("\nLearned Weight Matrix:")
