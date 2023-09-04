@@ -1,34 +1,34 @@
 import numpy as np
 
-def signum(x):
-    if x > 0:
-        return 1
-    elif x == 0:
-        return 0
-    else:
-        return -1
+def Hebbian(x, w):
+    v = np.dot(w, x)
+    return v
 
-# Define the number of neurons and the learning rate
-num_neurons = 4  # Update to match the size of your input patterns
-learning_rate = 0.1
+def bipolar_sign(y):
+    return 1 if y >= 0 else -1
 
-# Initialize the weight vector with zeros
-weights = np.array([1, -1, 0, 0.5])
+def continuous_bipolar(y):
+    return 2 / (1 + np.exp(-y)) - 1
 
-# Define a list of input patterns (binary vectors)
-input_patterns = [
-    np.array([1, -2, 1.5, 0]),
-    np.array([1, -0.5, -2, -1.5]),
-    np.array([0, 1, -1, 1.5])
-]
+def HebbianModel(x, w, desired_output):
+    old_w = w
+    print("Using bipolar:")
+    for i in range(len(x)):
+        y = Hebbian(x[i], w)
+        if y != desired_output[i]:
+            w = w + bipolar_sign(y) * x[i]
+        print(f"Weight in step {i + 1}: {w}")
+    
+    print("\nUsing continuous bipolar:")
+    for i in range(len(x)):
+        y = Hebbian(x[i], old_w)
+        if y != desired_output[i]:
+            old_w = old_w + continuous_bipolar(y) * x[i]
+        print(f"Weight in step {i + 1}: {old_w}")
 
-# Iterate through input patterns and update weights using Hebb's rule
-for pattern in input_patterns:
-    for i in range(num_neurons):
-        for j in range(num_neurons):
-            if i != j:
-                weights[i] += learning_rate * signum(pattern[i]) * signum(pattern[j])
-
-# Print the learned weight vector
-print("Learned Weight Vector:")
-print(weights)
+if __name__ == "__main__":
+    inputs = np.array([[1, -2, 1.5, 0], [1, -0.5, -2, -1.5], [0, 1, -1, 1.5]])
+    weights = np.array([1, -1, 0, 0.5])
+    desired_output = np.array([1, 1, 1, -1])
+    
+    HebbianModel(inputs, weights, desired_output)

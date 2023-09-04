@@ -14,12 +14,11 @@ def signum(x):
         return -1
     
 def sig1(net):
-    sgn = []
-    for i in range (len(net)):
-        sgn.append(signum(net[i]))
-    sgn = np.array(sgn)
-    return sgn
-        
+   if(net>=0):
+        return 1
+   else:
+       return -1
+   
 
 print("Input 1: ", x1)
 print("Weight 1: ",w1)
